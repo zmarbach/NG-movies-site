@@ -14,17 +14,19 @@ export class AppComponent implements OnInit{
 
   movie: Movie;
 
-  id: number = 2;
-
   constructor(private movieService: MovieService){
   
   }
 
   ngOnInit(){
     this.movieService.getAll()
-    .then(movies => this.movies = movies);
+      .then(movies => this.movies = movies);
 
-    this.movieService.getById(this.id)
+    
+  }
+
+  selectMovie(id: number){
+    this.movieService.getById(id)
       .then(movie => this.movie = movie);
   }
 

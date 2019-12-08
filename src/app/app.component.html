@@ -1,17 +1,46 @@
-<h3>ALL movies below: </h3>
-<div>{{movies | json}}</div>
+<h3>Zach's Movie Database</h3>
+
+<div class ="container-fluid">
+  <div class="table-responsive">
+    <table class="table table-striped table-condensed table-dark table-hover table-bordered border-success rounded">
+      <thead class="bg-success">
+        <tr>
+          <td>&nbsp;</td>
+          <td>Title  </td>
+          <td>Description </td>
+          <td>Length  </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let movie of movies">
+          <td>
+            <button (click) ="selectMovie(movie.movieId)" class="btn btn-sm btn-warning">Details</button>
+          </td>
+          <td>{{movie.title}}</td>
+          <td>{{movie.movieDescription}}</td>
+          <td>{{movie.rating}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-container *ngTemplateOutlet = "movie ? movieDetails : default"></ng-container>
+  <ng-template #movieDetails>
+  <div class="card rounded border-warning">
+    <div class="card-header"><h3>{{movie.title}}</h3></div>
+        <ul>
+            <li>Details: {{movie.movieDescription}}</li>
+            <li>Minutes: {{movie.length}}</li>
+            <li>Genre: {{movie.genre}}</li>
+            <li>Rating: {{movie.rating}}</li>
+          </ul>
+    </div>
+  </ng-template>
+
+  <ng-template #default>
+    <h2>Click "Details" for desired movie to see more details here</h2>
+  </ng-template>
+
+  </div>
 
 
-
-
-<h3>ONE movie with id of {{id}}:</h3>
-
-<!-- add table here for all movies -->
-<!--use *ngFor-->
-<div>{{movie | json}}</div>
-
-
-
-<!--add card here that shows details of selected movie-->
-<!--will need event that passes ID of selected product to component so can call API and return data for that movie-->
-<h3>Attempt to show title ONLY of movie above: {{movie?.title}}</h3>
