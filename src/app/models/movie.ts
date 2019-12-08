@@ -5,6 +5,7 @@ export class Movie {
     length: number;
     genre: string;
     rating: string;
+    posterUrl: string;
 
     constructor(movie: Movie){
         this.movieId = movie.movieId;
@@ -13,5 +14,6 @@ export class Movie {
         this.length = movie.length;
         this.genre = movie.genre;
         this.rating = movie.rating;
+        this.posterUrl = movie.posterUrl;
     }
 }
